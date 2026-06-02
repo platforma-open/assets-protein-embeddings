@@ -1,0 +1,7 @@
+{
+  "huggingface_repo": "facebook/esm2_t33_650M_UR50D",
+  "revision": "08e4846e537177426273712802403f7ba8261b6c",
+  "target_dir": "esm2-650M",
+  "license": "MIT",
+  "_comment": "Revision pinned to a specific commit for reproducible builds. To bump, set this to the latest commit from https://huggingface.co/facebook/esm2_t33_650M_UR50D/commits/main"
+}

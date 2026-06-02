@@ -1,0 +1,13 @@
+node_modules/
+dist/
+build/
+pkg-*.tgz
+pkg-*.zip
+*.tgz
+.turbo/
+
+# Asset build outputs — weights live here after `pnpm build`; not committed.
+indexed_model/
+
+# Weight smoke-test
+.venv-test/
