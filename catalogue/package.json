@@ -1,0 +1,30 @@
+{
+  "name": "@platforma-open/milaboratories.protein-embeddings-assets",
+  "version": "1.0.0",
+  "description": "Protein embeddings model assets catalogue",
+  "scripts": {
+    "cleanup": "rm -rf ./pkg-*.tgz && rm -rf ./dist/",
+    "build": "pl-pkg build"
+  },
+  "block-software": {
+    "entrypoints": {
+      "esm2-150M": {
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-150M/dist/tengo/asset/main.as.json"
+      },
+      "esm2-650M": {
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650M/dist/tengo/asset/main.as.json"
+      }
+    }
+  },
+  "files": [
+    "dist/"
+  ],
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@platforma-open/milaboratories.protein-embeddings-assets.esm2-150M": "workspace:*",
+    "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650M": "workspace:*"
+  },
+  "devDependencies": {
+    "@platforma-sdk/package-builder": "catalog:"
+  }
+}

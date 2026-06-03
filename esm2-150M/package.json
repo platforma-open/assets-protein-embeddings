@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "ESM-2 150M protein language model weights (facebook/esm2_t30_150M_UR50D, MIT)",
   "scripts": {
-    "cleanup": "rm -rf ./pkg-*.tgz && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",
+    "cleanup": "rm -rf ./pkg-*.tgz ./pkg-*.zip && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",
     "build": "../scripts/download-hf-model.sh ./modelInfo.json",
     "postbuild": "pl-pkg build && ([ -z \"${CI}\" ] || pl-pkg publish)"
   },

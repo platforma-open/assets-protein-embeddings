@@ -9,8 +9,15 @@
 #   {
 #     "huggingface_repo": "facebook/esm2_t33_650M_UR50D",
 #     "revision": "main",                  // commit hash recommended for reproducibility
-#     "target_dir": "esm2-650M"
+#     "target_dir": "esm2-650M",
+#     "include": ["config.json", "model.safetensors", ...]  // optional; see default below
 #   }
+#
+# By default only the safetensors weights plus tokenizer/config files are fetched.
+# The PyTorch (pytorch_model.bin) and TensorFlow (tf_model.h5) checkpoints are
+# byte-for-byte duplicates of the same weights — fetching them triples the asset
+# size for no benefit, so they are excluded. Override `include` per model if a
+# different file set is required.
 #
 # The asset's package.json must declare `block-software.entrypoints.main.asset.root`
 # pointing at `./indexed_model/<target_dir>` — pl-pkg picks up the downloaded files from there.
@@ -63,11 +70,35 @@ if ! command -v huggingface-cli >/dev/null 2>&1; then
     export PATH
 fi
 
-echo "Downloading $HF_REPO @ $REVISION to $OUTPUT_DIR ..."
+# Files to fetch. Override per-model via an "include" array in modelInfo.json.
+# Default: safetensors weights + tokenizer/config + model card, skipping the
+# redundant PyTorch (.bin) and TensorFlow (.h5) duplicates of the same weights.
+DEFAULT_INCLUDE='["config.json","model.safetensors","tokenizer_config.json","special_tokens_map.json","vocab.txt","README.md"]'
+INCLUDE_JSON=$(jq -c --argjson def "$DEFAULT_INCLUDE" '.include // $def' "$MODEL_INFO")
+
+INCLUDE_ARGS=(--include)
+while IFS= read -r pattern; do
+    INCLUDE_ARGS+=("$pattern")
+done < <(echo "$INCLUDE_JSON" | jq -r '.[]')
+
+echo "Downloading $HF_REPO @ $REVISION to $OUTPUT_DIR (files: $(echo "$INCLUDE_JSON" | jq -rc 'join(", ")')) ..."
 huggingface-cli download "$HF_REPO" \
     --revision "$REVISION" \
+    "${INCLUDE_ARGS[@]}" \
     --local-dir "$OUTPUT_DIR" \
     --local-dir-use-symlinks False
+
+# Bundle the model license alongside the weights so it ships inside the asset.
+# MIT requires the license text and copyright notice to accompany any
+# redistribution; HF does not ship a LICENSE file, so we provide our own
+# (tracked next to modelInfo.json) and copy it into the asset root.
+LICENSE_SRC="$(dirname "$MODEL_INFO")/LICENSE"
+if [ -f "$LICENSE_SRC" ]; then
+    cp "$LICENSE_SRC" "$OUTPUT_DIR/LICENSE"
+    echo "Bundled license: $LICENSE_SRC -> $OUTPUT_DIR/LICENSE"
+else
+    echo "WARNING: no LICENSE at $LICENSE_SRC; asset will ship without an explicit license." >&2
+fi
 
 echo "Done. Files in $OUTPUT_DIR:"
 ls -la "$OUTPUT_DIR" | head -20

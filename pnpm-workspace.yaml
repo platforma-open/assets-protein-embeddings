@@ -1,6 +1,7 @@
 packages:
   - esm2-650M
   - esm2-150M
+  - catalogue
 
 catalog:
   'turbo': ^2.5.6
