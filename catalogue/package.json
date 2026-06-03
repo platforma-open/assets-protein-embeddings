@@ -9,10 +9,10 @@
   "block-software": {
     "entrypoints": {
       "esm2-150M": {
-        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-150M/dist/tengo/asset/main.as.json"
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-150m/dist/tengo/asset/main.as.json"
       },
       "esm2-650M": {
-        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650M/dist/tengo/asset/main.as.json"
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650m/dist/tengo/asset/main.as.json"
       }
     }
   },
@@ -21,8 +21,8 @@
   ],
   "license": "UNLICENSED",
   "dependencies": {
-    "@platforma-open/milaboratories.protein-embeddings-assets.esm2-150M": "workspace:*",
-    "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650M": "workspace:*"
+    "@platforma-open/milaboratories.protein-embeddings-assets.esm2-150m": "workspace:*",
+    "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650m": "workspace:*"
   },
   "devDependencies": {
     "@platforma-sdk/package-builder": "catalog:"

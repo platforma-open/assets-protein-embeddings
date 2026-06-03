@@ -1,5 +1,5 @@
 {
-  "name": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-150M",
+  "name": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-150m",
   "version": "1.0.0",
   "description": "ESM-2 150M protein language model weights (facebook/esm2_t30_150M_UR50D, MIT)",
   "scripts": {

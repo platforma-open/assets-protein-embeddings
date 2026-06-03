@@ -1,5 +1,5 @@
 {
-  "name": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650M",
+  "name": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650m",
   "version": "1.0.0",
   "description": "ESM-2 650M protein language model weights (facebook/esm2_t33_650M_UR50D, MIT)",
   "scripts": {

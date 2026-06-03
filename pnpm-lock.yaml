@@ -29,10 +29,10 @@ importers:
 
   catalogue:
     dependencies:
-      '@platforma-open/milaboratories.protein-embeddings-assets.esm2-150M':
+      '@platforma-open/milaboratories.protein-embeddings-assets.esm2-150m':
         specifier: workspace:*
         version: link:../esm2-150M
-      '@platforma-open/milaboratories.protein-embeddings-assets.esm2-650M':
+      '@platforma-open/milaboratories.protein-embeddings-assets.esm2-650m':
         specifier: workspace:*
         version: link:../esm2-650M
     devDependencies:
