@@ -1,6 +1,6 @@
 {
   "name": "@platforma-open/milaboratories.protein-embeddings-assets.peptideclm-2",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "PeptideCLM-2 (PeptideMTR) SMILES peptide language model weights (aaronfeller/peptideclm-2-hybrid-large, MIT)",
   "scripts": {
     "cleanup": "rm -rf ./pkg-*.tgz ./pkg-*.zip && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",

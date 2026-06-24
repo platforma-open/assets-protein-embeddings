@@ -1,6 +1,6 @@
 {
   "name": "@platforma-open/milaboratories.protein-embeddings-assets.h3berta",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "H3BERTa antibody CDR-H3 language model weights (Chrode/H3BERTa, RoBERTa-base, MIT)",
   "scripts": {
     "cleanup": "rm -rf ./pkg-*.tgz ./pkg-*.zip && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",

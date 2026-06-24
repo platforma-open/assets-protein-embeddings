@@ -1,6 +1,6 @@
 {
   "name": "@platforma-open/milaboratories.protein-embeddings-assets.currab",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "CurrAb antibody language model weights (brineylab/CurrAb, ESM-2 650M architecture, MIT)",
   "scripts": {
     "cleanup": "rm -rf ./pkg-*.tgz ./pkg-*.zip && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",

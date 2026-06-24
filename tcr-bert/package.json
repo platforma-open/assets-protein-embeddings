@@ -1,6 +1,6 @@
 {
   "name": "@platforma-open/milaboratories.protein-embeddings-assets.tcr-bert",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "TCR-BERT T-cell receptor language model weights (wukevin/tcr-bert, BERT, Apache-2.0)",
   "scripts": {
     "cleanup": "rm -rf ./pkg-*.tgz ./pkg-*.zip && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",

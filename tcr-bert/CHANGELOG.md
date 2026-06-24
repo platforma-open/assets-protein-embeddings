@@ -1,6 +1,6 @@
-# @platforma-open/milaboratories.protein-embeddings-assets
+# @platforma-open/milaboratories.protein-embeddings-assets.tcr-bert
 
-## 1.2.0
+## 1.1.0
 
 ### Minor Changes
 
@@ -14,25 +14,3 @@
   - **AbLang2** (Zenodo `10185169`, BSD-3-Clause-Clear, 480-dim) — paired antibody specialist. Weights-only asset (`model.pt` + `hparams.json`); the model code + tokenizer come from the `ablang2` pip package in the runenv. Fetched via the new `scripts/download-archive-model.sh` (Zenodo, not HuggingFace).
 
   HuggingFace revisions are pinned to a commit hash; AbLang2 is pinned by its immutable Zenodo record URL. Every asset ships the model license bundled inside it. ESM-2 remains the universal fallback and canonical peptide model.
-
-### Patch Changes
-
-- Updated dependencies [51efa05]
-  - @platforma-open/milaboratories.protein-embeddings-assets.currab@1.1.0
-  - @platforma-open/milaboratories.protein-embeddings-assets.vhhbert@1.1.0
-  - @platforma-open/milaboratories.protein-embeddings-assets.h3berta@1.1.0
-  - @platforma-open/milaboratories.protein-embeddings-assets.tcr-bert@1.1.0
-  - @platforma-open/milaboratories.protein-embeddings-assets.peptideclm-2@1.1.0
-  - @platforma-open/milaboratories.protein-embeddings-assets.ablang2@1.1.0
-
-## 1.1.0
-
-### Minor Changes
-
-- 05171d8: First version
-
-### Patch Changes
-
-- Updated dependencies [05171d8]
-  - @platforma-open/milaboratories.protein-embeddings-assets.esm2-150m@1.1.0
-  - @platforma-open/milaboratories.protein-embeddings-assets.esm2-650m@1.1.0
