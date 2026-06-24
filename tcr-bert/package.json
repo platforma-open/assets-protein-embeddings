@@ -1,0 +1,28 @@
+{
+  "name": "@platforma-open/milaboratories.protein-embeddings-assets.tcr-bert",
+  "version": "1.0.0",
+  "description": "TCR-BERT T-cell receptor language model weights (wukevin/tcr-bert, BERT, Apache-2.0)",
+  "scripts": {
+    "cleanup": "rm -rf ./pkg-*.tgz ./pkg-*.zip && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",
+    "build": "../scripts/download-hf-model.sh ./modelInfo.json",
+    "postbuild": "pl-pkg build && ([ -z \"${CI}\" ] || pl-pkg publish)"
+  },
+  "block-software": {
+    "entrypoints": {
+      "main": {
+        "asset": {
+          "type": "asset",
+          "registry": "platforma-open",
+          "root": "./indexed_model/tcr-bert"
+        }
+      }
+    }
+  },
+  "files": [
+    "dist/"
+  ],
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@platforma-sdk/package-builder": "catalog:"
+  }
+}

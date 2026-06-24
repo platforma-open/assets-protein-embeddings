@@ -1,0 +1,28 @@
+{
+  "name": "@platforma-open/milaboratories.protein-embeddings-assets.ablang2",
+  "version": "1.0.0",
+  "description": "AbLang2 paired antibody language model weights (Zenodo 10185169, BSD-3-Clause-Clear, 480-dim)",
+  "scripts": {
+    "cleanup": "rm -rf ./pkg-*.tgz ./pkg-*.zip && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",
+    "build": "../scripts/download-archive-model.sh ./modelInfo.json",
+    "postbuild": "pl-pkg build && ([ -z \"${CI}\" ] || pl-pkg publish)"
+  },
+  "block-software": {
+    "entrypoints": {
+      "main": {
+        "asset": {
+          "type": "asset",
+          "registry": "platforma-open",
+          "root": "./indexed_model/ablang2"
+        }
+      }
+    }
+  },
+  "files": [
+    "dist/"
+  ],
+  "license": "BSD-3-Clause-Clear",
+  "devDependencies": {
+    "@platforma-sdk/package-builder": "catalog:"
+  }
+}

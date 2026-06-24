@@ -27,14 +27,44 @@ importers:
         specifier: 'catalog:'
         version: 2.9.16
 
+  ablang2:
+    devDependencies:
+      '@platforma-sdk/package-builder':
+        specifier: 'catalog:'
+        version: 3.0.1
+
   catalogue:
     dependencies:
+      '@platforma-open/milaboratories.protein-embeddings-assets.ablang2':
+        specifier: workspace:*
+        version: link:../ablang2
+      '@platforma-open/milaboratories.protein-embeddings-assets.currab':
+        specifier: workspace:*
+        version: link:../currab
       '@platforma-open/milaboratories.protein-embeddings-assets.esm2-150m':
         specifier: workspace:*
         version: link:../esm2-150M
       '@platforma-open/milaboratories.protein-embeddings-assets.esm2-650m':
         specifier: workspace:*
         version: link:../esm2-650M
+      '@platforma-open/milaboratories.protein-embeddings-assets.h3berta':
+        specifier: workspace:*
+        version: link:../h3berta
+      '@platforma-open/milaboratories.protein-embeddings-assets.peptideclm-2':
+        specifier: workspace:*
+        version: link:../peptideclm-2
+      '@platforma-open/milaboratories.protein-embeddings-assets.tcr-bert':
+        specifier: workspace:*
+        version: link:../tcr-bert
+      '@platforma-open/milaboratories.protein-embeddings-assets.vhhbert':
+        specifier: workspace:*
+        version: link:../vhhbert
+    devDependencies:
+      '@platforma-sdk/package-builder':
+        specifier: 'catalog:'
+        version: 3.0.1
+
+  currab:
     devDependencies:
       '@platforma-sdk/package-builder':
         specifier: 'catalog:'
@@ -47,6 +77,30 @@ importers:
         version: 3.0.1
 
   esm2-650M:
+    devDependencies:
+      '@platforma-sdk/package-builder':
+        specifier: 'catalog:'
+        version: 3.0.1
+
+  h3berta:
+    devDependencies:
+      '@platforma-sdk/package-builder':
+        specifier: 'catalog:'
+        version: 3.0.1
+
+  peptideclm-2:
+    devDependencies:
+      '@platforma-sdk/package-builder':
+        specifier: 'catalog:'
+        version: 3.0.1
+
+  tcr-bert:
+    devDependencies:
+      '@platforma-sdk/package-builder':
+        specifier: 'catalog:'
+        version: 3.0.1
+
+  vhhbert:
     devDependencies:
       '@platforma-sdk/package-builder':
         specifier: 'catalog:'

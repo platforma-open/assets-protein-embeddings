@@ -11,6 +11,7 @@
 #     "revision": "main",                  // commit hash recommended for reproducibility
 #     "target_dir": "esm2-650M",
 #     "include": ["config.json", "model.safetensors", ...]  // optional; see default below
+#     "convert_to_safetensors": true                        // optional; see below
 #   }
 #
 # By default only the safetensors weights plus tokenizer/config files are fetched.
@@ -18,6 +19,12 @@
 # byte-for-byte duplicates of the same weights — fetching them triples the asset
 # size for no benefit, so they are excluded. Override `include` per model if a
 # different file set is required.
+#
+# Some repos ship ONLY pytorch_model.bin and no safetensors (e.g. wukevin/tcr-bert).
+# For those, set "include" to fetch pytorch_model.bin and set
+# "convert_to_safetensors": true — after download the weights are re-saved as
+# model.safetensors (via scripts/convert-to-safetensors.py) and the .bin dropped,
+# so the published asset always carries safetensors.
 #
 # The asset's package.json must declare `block-software.entrypoints.main.asset.root`
 # pointing at `./indexed_model/<target_dir>` — pl-pkg picks up the downloaded files from there.
@@ -44,6 +51,7 @@ fi
 HF_REPO=$(jq -r '.huggingface_repo' "$MODEL_INFO")
 REVISION=$(jq -r '.revision // "main"' "$MODEL_INFO")
 TARGET_DIR=$(jq -r '.target_dir' "$MODEL_INFO")
+CONVERT_TO_SAFETENSORS=$(jq -r '.convert_to_safetensors // false' "$MODEL_INFO")
 
 if [ -z "$HF_REPO" ] || [ "$HF_REPO" = "null" ]; then
     echo "Error: huggingface_repo missing from $MODEL_INFO" >&2
@@ -57,17 +65,20 @@ fi
 OUTPUT_DIR="indexed_model/$TARGET_DIR"
 mkdir -p "$OUTPUT_DIR"
 
-# Install huggingface_hub on demand. The asset build can run in CI with a clean
-# Python; we don't want a global pip dependency on every developer's machine.
+# Ensure user-installed binaries are on PATH up front, so a huggingface-cli that
+# was pre-installed (e.g. by the root `prebuild`, which installs huggingface_hub
+# once before turbo fans out) is found here — otherwise each parallel asset build
+# would re-run the install concurrently and race on the shared ~/.local site dir.
+export PATH="$HOME/.local/bin:$PATH"
+
+# Install huggingface_hub on demand as a fallback (e.g. building a single package
+# without the root prebuild). The root prebuild normally satisfies this serially.
 if ! command -v huggingface-cli >/dev/null 2>&1; then
     echo "huggingface-cli not found; installing huggingface_hub via pip..."
     pip install --quiet --user 'huggingface_hub>=0.20,<1.0' || {
         echo "Error: failed to install huggingface_hub. Try 'pip install huggingface_hub'." >&2
         exit 1
     }
-    # User-installed binaries live under ~/.local/bin (or pip's default user scripts dir).
-    PATH="$HOME/.local/bin:$PATH"
-    export PATH
 fi
 
 # Files to fetch. Override per-model via an "include" array in modelInfo.json.
@@ -88,6 +99,22 @@ huggingface-cli download "$HF_REPO" \
     --local-dir "$OUTPUT_DIR" \
     --local-dir-use-symlinks False
 
+# Convert a .bin-only checkpoint to safetensors when requested. Needs torch +
+# transformers; install on demand if the active python can't import them. The
+# helper drops pytorch_model.bin afterward so only safetensors ships.
+if [ "$CONVERT_TO_SAFETENSORS" = "true" ]; then
+    PYBIN="${PYTHON:-python3}"
+    if ! "$PYBIN" -c 'import torch, transformers, safetensors' >/dev/null 2>&1; then
+        echo "Installing torch/transformers/safetensors for .bin->safetensors conversion (one-time, large)..."
+        "$PYBIN" -m pip install --quiet --user torch transformers safetensors || {
+            echo "Error: failed to install conversion deps. Install torch+transformers, then re-run." >&2
+            exit 1
+        }
+    fi
+    echo "Converting pytorch_model.bin -> model.safetensors in $OUTPUT_DIR ..."
+    "$PYBIN" "$(dirname "$0")/convert-to-safetensors.py" "$OUTPUT_DIR"
+fi
+
 # Bundle the model license alongside the weights so it ships inside the asset.
 # MIT requires the license text and copyright notice to accompany any
 # redistribution; HF does not ship a LICENSE file, so we provide our own
@@ -99,6 +126,10 @@ if [ -f "$LICENSE_SRC" ]; then
 else
     echo "WARNING: no LICENSE at $LICENSE_SRC; asset will ship without an explicit license." >&2
 fi
+
+# Drop the huggingface-cli download cache (.cache/huggingface/*.metadata resume
+# stubs) so the published asset carries only the model files + LICENSE.
+rm -rf "$OUTPUT_DIR/.cache"
 
 echo "Done. Files in $OUTPUT_DIR:"
 ls -la "$OUTPUT_DIR" | head -20

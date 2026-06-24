@@ -1,0 +1,7 @@
+{
+  "huggingface_repo": "brineylab/CurrAb",
+  "revision": "92e28534663e163f1b398f773b3fe041085737d9",
+  "target_dir": "currab",
+  "license": "MIT",
+  "_comment": "Revision pinned to a specific commit for reproducible builds. To bump, set this to the latest commit from https://huggingface.co/brineylab/CurrAb/commits/main"
+}

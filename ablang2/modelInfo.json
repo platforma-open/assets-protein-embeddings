@@ -1,0 +1,7 @@
+{
+  "archive_url": "https://zenodo.org/records/10185169/files/ablang2-weights.tar.gz",
+  "target_dir": "ablang2",
+  "keep": ["model.pt", "hparams.json"],
+  "license": "BSD-3-Clause-Clear",
+  "_comment": "AbLang2 paired weights from Zenodo record 10185169 (immutable, so the URL pins the version). Unlike the other variants this is NOT a HuggingFace repo: the `ablang2` pip package in the runenv provides the model code + tokenizer, and this asset ships only the weights (model.pt + hparams.json). At runtime the block places these into the pip package's model-weights-ablang2-paired/ directory so ablang2.pretrained() loads offline instead of fetching from Zenodo. License is BSD-3-Clause-Clear per the Zenodo weights record; the code wheel is plain BSD-3-Clause (the weights record uses the Clear variant). Copyright (c) 2021 Tobias Hegelund Olsen."
+}

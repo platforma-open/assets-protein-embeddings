@@ -1,0 +1,18 @@
+{
+  "huggingface_repo": "aaronfeller/peptideclm-2-hybrid-large",
+  "revision": "04f9487683f5dcbcd528cd911d29ec0384307a05",
+  "target_dir": "peptideclm-2",
+  "license": "MIT",
+  "include": [
+    "config.json",
+    "model.safetensors",
+    "tokenizer.json",
+    "tokenizer_config.json",
+    "special_tokens_map.json",
+    "README.md",
+    "ChemPepMTR.py",
+    "config.py",
+    "__init__.py"
+  ],
+  "_comment": "SMILES model (no vocab.txt; uses tokenizer.json). Ships custom modeling code (ChemPepMTR.py, config.py, __init__.py) — the block must load it with trust_remote_code=True, and the .py files MUST be bundled (hence the include override). Revision pinned for reproducible builds; bump from https://huggingface.co/aaronfeller/peptideclm-2-hybrid-large/commits/main. MIT verified against github.com/AaronFeller/PeptideCLM-2 + AaronFeller/PeptideMTR (Copyright (c) 2025 Aaron Feller); the HF card carries no license tag, so we ship the MIT text in ./LICENSE."
+}

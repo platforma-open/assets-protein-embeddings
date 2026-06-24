@@ -1,0 +1,28 @@
+{
+  "name": "@platforma-open/milaboratories.protein-embeddings-assets.currab",
+  "version": "1.0.0",
+  "description": "CurrAb antibody language model weights (brineylab/CurrAb, ESM-2 650M architecture, MIT)",
+  "scripts": {
+    "cleanup": "rm -rf ./pkg-*.tgz ./pkg-*.zip && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",
+    "build": "../scripts/download-hf-model.sh ./modelInfo.json",
+    "postbuild": "pl-pkg build && ([ -z \"${CI}\" ] || pl-pkg publish)"
+  },
+  "block-software": {
+    "entrypoints": {
+      "main": {
+        "asset": {
+          "type": "asset",
+          "registry": "platforma-open",
+          "root": "./indexed_model/currab"
+        }
+      }
+    }
+  },
+  "files": [
+    "dist/"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@platforma-sdk/package-builder": "catalog:"
+  }
+}

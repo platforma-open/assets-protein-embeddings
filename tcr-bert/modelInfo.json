@@ -1,0 +1,16 @@
+{
+  "huggingface_repo": "wukevin/tcr-bert",
+  "revision": "ef65ddcb4e549990e584680e27f9ae2618c884ff",
+  "target_dir": "tcr-bert",
+  "license": "Apache-2.0",
+  "include": [
+    "config.json",
+    "pytorch_model.bin",
+    "tokenizer_config.json",
+    "special_tokens_map.json",
+    "vocab.txt",
+    "README.md"
+  ],
+  "convert_to_safetensors": true,
+  "_comment": "This repo ships only pytorch_model.bin (no safetensors), so include fetches the .bin and convert_to_safetensors re-saves it as model.safetensors (dropping the .bin). Revision pinned for reproducible builds; bump from https://huggingface.co/wukevin/tcr-bert/commits/main. Apache-2.0 from the upstream github.com/wukevin/tcr-bert LICENSE, shipped verbatim in ./LICENSE."
+}

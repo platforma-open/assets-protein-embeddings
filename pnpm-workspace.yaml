@@ -1,6 +1,12 @@
 packages:
   - esm2-650M
   - esm2-150M
+  - currab
+  - vhhbert
+  - h3berta
+  - tcr-bert
+  - peptideclm-2
+  - ablang2
   - catalogue
 
 catalog:
