@@ -1,7 +1,9 @@
 {
   "name": "protein-embeddings-assets",
+  "private": true,
   "scripts": {
     "cleanup": "pnpm -r cleanup",
+    "prebuild": "pip install --quiet --user 'huggingface_hub>=0.20,<1.0' || python3 -m pip install --quiet --user 'huggingface_hub>=0.20,<1.0'",
     "build": "turbo run build --log-order=stream --env-mode=loose",
     "test": "turbo run test",
     "changeset": "changeset",

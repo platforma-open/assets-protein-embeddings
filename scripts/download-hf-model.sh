@@ -65,17 +65,20 @@ fi
 OUTPUT_DIR="indexed_model/$TARGET_DIR"
 mkdir -p "$OUTPUT_DIR"
 
-# Install huggingface_hub on demand. The asset build can run in CI with a clean
-# Python; we don't want a global pip dependency on every developer's machine.
+# Ensure user-installed binaries are on PATH up front, so a huggingface-cli that
+# was pre-installed (e.g. by the root `prebuild`, which installs huggingface_hub
+# once before turbo fans out) is found here — otherwise each parallel asset build
+# would re-run the install concurrently and race on the shared ~/.local site dir.
+export PATH="$HOME/.local/bin:$PATH"
+
+# Install huggingface_hub on demand as a fallback (e.g. building a single package
+# without the root prebuild). The root prebuild normally satisfies this serially.
 if ! command -v huggingface-cli >/dev/null 2>&1; then
     echo "huggingface-cli not found; installing huggingface_hub via pip..."
     pip install --quiet --user 'huggingface_hub>=0.20,<1.0' || {
         echo "Error: failed to install huggingface_hub. Try 'pip install huggingface_hub'." >&2
         exit 1
     }
-    # User-installed binaries live under ~/.local/bin (or pip's default user scripts dir).
-    PATH="$HOME/.local/bin:$PATH"
-    export PATH
 fi
 
 # Files to fetch. Override per-model via an "include" array in modelInfo.json.
