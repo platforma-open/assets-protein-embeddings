@@ -1,0 +1,7 @@
+{
+  "huggingface_repo": "COGNANO/VHHBERT",
+  "revision": "cd6341d2700b93cd3d8d66cef360ad01cca19a73",
+  "target_dir": "vhhbert",
+  "license": "MIT",
+  "_comment": "Revision pinned to a specific commit for reproducible builds. To bump, set this to the latest commit from https://huggingface.co/COGNANO/VHHBERT/commits/main"
+}

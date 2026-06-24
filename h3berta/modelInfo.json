@@ -1,0 +1,17 @@
+{
+  "huggingface_repo": "Chrode/H3BERTa",
+  "revision": "7594a69aa36fadd31a25fbeddecb86c5a81dd0be",
+  "target_dir": "h3berta",
+  "license": "MIT",
+  "include": [
+    "config.json",
+    "model.safetensors",
+    "tokenizer_config.json",
+    "special_tokens_map.json",
+    "vocab.txt",
+    "tokenizer.json",
+    "added_tokens.json",
+    "README.md"
+  ],
+  "_comment": "RoBERTa tokenizer ships tokenizer.json + added_tokens.json beyond the ESM-2 default set, so include is overridden to fetch them. Revision pinned for reproducible builds; bump from https://huggingface.co/Chrode/H3BERTa/commits/main. No upstream LICENSE file exists; the HF model card declares MIT, and we ship the MIT text in ./LICENSE."
+}

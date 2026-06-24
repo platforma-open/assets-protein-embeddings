@@ -1,0 +1,28 @@
+{
+  "name": "@platforma-open/milaboratories.protein-embeddings-assets.h3berta",
+  "version": "1.0.0",
+  "description": "H3BERTa antibody CDR-H3 language model weights (Chrode/H3BERTa, RoBERTa-base, MIT)",
+  "scripts": {
+    "cleanup": "rm -rf ./pkg-*.tgz ./pkg-*.zip && rm -rf ./build/ && rm -rf ./dist/ && rm -rf ./indexed_model/",
+    "build": "../scripts/download-hf-model.sh ./modelInfo.json",
+    "postbuild": "pl-pkg build && ([ -z \"${CI}\" ] || pl-pkg publish)"
+  },
+  "block-software": {
+    "entrypoints": {
+      "main": {
+        "asset": {
+          "type": "asset",
+          "registry": "platforma-open",
+          "root": "./indexed_model/h3berta"
+        }
+      }
+    }
+  },
+  "files": [
+    "dist/"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@platforma-sdk/package-builder": "catalog:"
+  }
+}

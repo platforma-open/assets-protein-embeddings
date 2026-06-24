@@ -13,6 +13,24 @@
       },
       "esm2-650M": {
         "reference": "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650m/dist/tengo/asset/main.as.json"
+      },
+      "currab": {
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.currab/dist/tengo/asset/main.as.json"
+      },
+      "vhhbert": {
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.vhhbert/dist/tengo/asset/main.as.json"
+      },
+      "h3berta": {
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.h3berta/dist/tengo/asset/main.as.json"
+      },
+      "tcr-bert": {
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.tcr-bert/dist/tengo/asset/main.as.json"
+      },
+      "peptideclm-2": {
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.peptideclm-2/dist/tengo/asset/main.as.json"
+      },
+      "ablang2": {
+        "reference": "@platforma-open/milaboratories.protein-embeddings-assets.ablang2/dist/tengo/asset/main.as.json"
       }
     }
   },
@@ -22,7 +40,13 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@platforma-open/milaboratories.protein-embeddings-assets.esm2-150m": "workspace:*",
-    "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650m": "workspace:*"
+    "@platforma-open/milaboratories.protein-embeddings-assets.esm2-650m": "workspace:*",
+    "@platforma-open/milaboratories.protein-embeddings-assets.currab": "workspace:*",
+    "@platforma-open/milaboratories.protein-embeddings-assets.vhhbert": "workspace:*",
+    "@platforma-open/milaboratories.protein-embeddings-assets.h3berta": "workspace:*",
+    "@platforma-open/milaboratories.protein-embeddings-assets.tcr-bert": "workspace:*",
+    "@platforma-open/milaboratories.protein-embeddings-assets.peptideclm-2": "workspace:*",
+    "@platforma-open/milaboratories.protein-embeddings-assets.ablang2": "workspace:*"
   },
   "devDependencies": {
     "@platforma-sdk/package-builder": "catalog:"
