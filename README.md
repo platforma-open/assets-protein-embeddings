@@ -7,7 +7,7 @@ Protein language model weights, distributed as Platforma assets. Consumed by `bl
 | Variant         | Source                                            | Dim  | Purpose                                                                                                    |
 | --------------- | ------------------------------------------------- | ---- | ---------------------------------------------------------------------------------------------------------- |
 | `esm2-650M`     | `facebook/esm2_t33_650M_UR50D` on HuggingFace Hub | 1280 | Universal protein LM, GPU mode (fp16). Canonical peptide model + universal fallback                        |
-| `esm2-150M`     | `facebook/esm2_t30_150M_UR50D` on HuggingFace Hub | 1280 | Universal protein LM, CPU mode (smaller checkpoint; ONNX int8 export happens block-side at packaging time) |
+| `esm2-150M`     | `facebook/esm2_t30_150M_UR50D` on HuggingFace Hub | 640  | Universal protein LM, CPU mode (smaller checkpoint; ONNX int8 export happens block-side at packaging time) |
 | `currab`        | `brineylab/CurrAb` on HuggingFace Hub             | 1280 | Antibody specialist (ESM-2 650M arch; heavy / light / paired)                                              |
 | `vhhbert`       | `COGNANO/VHHBERT` on HuggingFace Hub              | 768  | VHH / nanobody specialist (RoBERTa-base)                                                                    |
 | `h3berta`       | `Chrode/H3BERTa` on HuggingFace Hub               | 768  | Antibody CDR-H3 specialist (RoBERTa-base; heavy CDR3, transfers to VHH CDR3)                                |
